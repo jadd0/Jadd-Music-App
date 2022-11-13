@@ -11,7 +11,12 @@
 		const res = await fetch(`/api/getSpotify?query=${songName}`, {
 			headers: { 'Content-Type': 'application/json' }
 		});
-		songs = await res.json();
+		const parse = await res.json()
+		if (parse[0] == null) {
+			songs = []
+			return
+		}
+		songs = parse
 		console.log(songs);
 	}
 </script>
@@ -140,7 +145,7 @@
 		flex-direction: column;
 		justify-content: center;
 		align-items: center;
-		border: 4px solid #121212;
+		gap: 10px;
 		margin: 0 auto;
 		border-radius: 15px;
 		margin-top: 50px;
@@ -149,14 +154,13 @@
 	.song {
 		width: 100%;
 		min-height: 100px;
-		/* background: grey; */
+		background: #181818;
 		display: flex;
-		/* justify-content: flex;
-		align-items: center; */
+		border-radius: 6px;
 	}
 
 	.song:nth-child(1) {
-		margin-top: 500px;
+		margin-top: 1700px;
 	}
 
 	.thumbnail {
@@ -200,7 +204,7 @@
 		display: flex;
 		justify-content: center;
 		align-items: center;
-		margin-top: -2px;
+		margin-top: 0px;
 	}
 
 	.explicitHolder {

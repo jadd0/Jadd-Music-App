@@ -157,10 +157,16 @@
 		background: #181818;
 		display: flex;
 		border-radius: 6px;
+		transition: 0.2s ease-in-out;
+		cursor: pointer;
 	}
 
 	.song:nth-child(1) {
 		margin-top: 1700px;
+	}
+
+	.song:hover {
+		background: #282828;
 	}
 
 	.thumbnail {

@@ -1,5 +1,3 @@
-import { redirect } from "@sveltejs/kit";
-
 export class Spotify {
 	refreshToken: string;
 	accessToken: string;
@@ -14,9 +12,7 @@ export class Spotify {
 	}
 
 	async getAccess() {
-    console.log({1: this.clientId, 2: this.clientSecret, 3: this.refreshToken});
 		const clientEncoded = Buffer.from(`${this.clientId}:${this.clientSecret}`).toString('base64');
-    console.log(clientEncoded)
 		const url = `https://accounts.spotify.com/api/token`;
 
 		const res = await fetch(url, {
@@ -44,20 +40,34 @@ export class Spotify {
 		const { query, type, market, limit, offset } = config;
 
     if (this.accessToken == undefined || this.accessToken.length == 0) {
-			await this.getAccess();
+			
+			// await this.getAccess();
 		}
 
-		const res = await fetch(`https://api.spotify.com/v1/search?q=${query}&type=${type}`, {
+
+		const res = await fetch(`https://api.spotify.com/v1/search?q=${query}&type=${type}&limit=${limit}`, {
 			headers: {
 				'Content-Type': 'application/json',
 				Authorization: `Bearer ${this.accessToken}`
 			}
 		});
-    
-    if (!res.ok) {
-      return false
-    }
 
-    return await res.json()
+		let parse = await res.json()
+
+		if (!res.ok) {
+			if (parse.error.message === 'Invalid access token' || parse.error.message === 'Only valid bearer authentication supported') {
+				await this.getAccess()
+				parse = await this.search({ query, type, market, limit, offset })
+
+				if (!parse) {
+					return false
+				}
+			}
+			else {
+				return false
+			}
+		}
+
+    return parse
 	}
 }

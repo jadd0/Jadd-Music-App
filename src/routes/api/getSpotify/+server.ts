@@ -9,11 +9,11 @@ const refreshToken = import.meta.env.VITE_SPOTIFY_REFRESH_TOKEN;
 const spotify: any = new Spotify(refreshToken, clientId, clientSecret);
 
 export const GET: RequestHandler = async ({ url, request }) => {
+
 	const query = url.searchParams.get('query');
-	const req = await request.json()
-	const parse = await spotify.search({query, type: 'track'})
+	console.log(query)
+	const parse = await spotify.search({query, type: 'track', limit: 20})
+	// console.log(parse)
 
-	console.log(parse.tracks.items);
-
-	return new Response('hello');
+	return new Response(JSON.stringify(parse.tracks.items));
 };

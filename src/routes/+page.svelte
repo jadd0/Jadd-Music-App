@@ -153,7 +153,7 @@
 
 	.song {
 		width: 100%;
-		min-height: 100px;
+		min-height: 60px;
 		background: #181818;
 		display: flex;
 		border-radius: 6px;
@@ -162,7 +162,7 @@
 	}
 
 	.song:nth-child(1) {
-		margin-top: 1700px;
+		margin-top: 900px;
 	}
 
 	.song:hover {
@@ -170,13 +170,13 @@
 	}
 
 	.thumbnail {
-		width: 60px;
-		height: 60px;
+		width: 45px;
+		height: 45px;
 		/* float: left;
 		margin-left: 20px;
 		margin: 0 auto; */
 		position: relative;
-		top: 20%;
+		top: 13.5%;
 		left: 5%;
 	}
 
@@ -187,13 +187,13 @@
 		flex-direction: column;
 		justify-content: start;
 		align-items: start;
-		margin-left: 7%;
+		margin-left: 7.5%;
 	}
 
 	h2 {
-		font-size: 17px;
+		font-size: 15px;
 		text-align: left;
-		margin-top: 25px;
+		margin-top: 15px;
 	}
 
 	h3 {
@@ -211,7 +211,7 @@
 		display: flex;
 		justify-content: center;
 		align-items: center;
-		margin-top: 0px;
+		/* margin-top: -1px; */
 	}
 
 	.explicitHolder {
@@ -230,7 +230,7 @@
 		justify-content: center;
 		align-items: center;
 		height: 20px;
-		margin-top: 5px;
+		margin-top: 1px;
 	}
 
 	@media (max-width: 460px) {

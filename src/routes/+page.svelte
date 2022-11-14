@@ -200,6 +200,7 @@
 		font-size: 13px;
 		text-align: left;
 		float: left;
+		color:rgb(142, 142, 142);
 	}
 
 	.explicit {

@@ -13,7 +13,6 @@ export const GET: RequestHandler = async ({ url, request }) => {
 	const query = url.searchParams.get('query');
 	console.log(query)
 	const parse = await spotify.search({query, type: 'track', limit: 20})
-	// console.log(parse)
 
 	return new Response(JSON.stringify(parse.tracks.items));
 };

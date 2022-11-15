@@ -11,12 +11,12 @@
 		const res = await fetch(`/api/getSpotify?query=${songName}`, {
 			headers: { 'Content-Type': 'application/json' }
 		});
-		const parse = await res.json()
+		const parse = await res.json();
 		if (parse[0] == null) {
-			songs = []
-			return
+			songs = [];
+			return;
 		}
-		songs = parse
+		songs = parse;
 		console.log(songs);
 	}
 </script>
@@ -25,10 +25,19 @@
 
 <body>
 	<div class="container">
-		<h1>Name Finder</h1>
 		<div class="inputHolder">
 			<input class="userInput" type="text" bind:value={songName} />
 			<span class="floatingLabel">Name</span>
+		</div>
+
+		<div class="desc">
+			<div class="empty"></div>
+			<div class="titleHolder"><h4>TITLE</h4></div>
+			<div class="albumTitle"><h4>ALBUM</h4></div>
+			<div class="durationHolder">
+				<svg role="img" height="16" width="16" viewBox="0 0 16 16" class="Svg-ytk21e-0 eqtHWV"><path d="M8 1.5a6.5 6.5 0 100 13 6.5 6.5 0 000-13zM0 8a8 8 0 1116 0A8 8 0 010 8z"></path><path d="M8 3.25a.75.75 0 01.75.75v3.25H11a.75.75 0 010 1.5H7.25V4A.75.75 0 018 3.25z"></path></svg>
+			</div>
+			
 		</div>
 
 		<div class="songContainer">
@@ -41,13 +50,23 @@
 							{#if song.explicit}
 								<div class="explicitHolder">
 									<div class="explicit">
-									<span class="explicitText">E</span>
+										<span class="explicitText">E</span>
+									</div>
 								</div>
-								</div>
-								
 							{/if}
-							<h3>{song.artists[0].name}</h3>
+							<h3 class="artist">
+								{#each song.artists as artist, i}
+									{song.artists[0].name}{song.artists[i + 1] === undefined
+										? ''
+										: song.artists[i + 2] === undefined
+										? ' & '
+										: ', '}
+								{/each}
+							</h3>
 						</div>
+					</div>
+					<div class="albumHolder">
+						<h3>{song.album.name}</h3>
 					</div>
 				</div>
 			{/each}
@@ -137,8 +156,59 @@
 		font-size: 17px !important;
 	}
 
+	.desc {
+		width: 700px;
+		height: 30px;
+		margin: 0 auto;
+		/* background: white; */
+		display: flex;
+		margin-top: 20px;
+		border-bottom: #727272;
+	}
+
+	.empty {
+		width: 14%;
+		height: 100%;
+		/* background: green; */
+	}
+
+	.titleHolder {
+		width: 40%;
+		height: 100%;
+		/* background: blue; */
+		display: flex;
+		justify-content: start;
+		align-items: center;
+	}
+
+	.albumTitle {
+		width: 35%;
+		height: 100%;
+		/* background: yellow; */
+		display: flex;
+		justify-content: start;
+		align-items: center;
+	}
+
+	.durationHolder {
+		width: 11%;
+		height: 100%;
+		/* background: orange; */
+		display: flex;
+		justify-content: start;
+		align-items: center;
+	}
+
+	h4 {
+		color:rgb(142, 142, 142);
+		font-size: 15px;
+		font-weight: 700;
+
+
+	}
+
 	.songContainer {
-		width: 600px;
+		width: 700px;
 		height: 500px;
 		overflow: scroll;
 		display: flex;
@@ -148,7 +218,8 @@
 		gap: 10px;
 		margin: 0 auto;
 		border-radius: 15px;
-		margin-top: 50px;
+		margin-top: 5px;
+		/* background: red; */
 	}
 
 	.song {
@@ -181,26 +252,48 @@
 	}
 
 	.properties {
-		width: auto;
+		width: 40%;
 		height: 100%;
 		display: flex;
 		flex-direction: column;
 		justify-content: start;
 		align-items: start;
 		margin-left: 7.5%;
+		padding-right: 4.5%;
+	}
+	
+	.albumHolder {
+		width: 30%;
+		height: 100%;
+		display: flex;
+		justify-content: start;
+		align-items: center;
 	}
 
 	h2 {
 		font-size: 15px;
 		text-align: left;
 		margin-top: 15px;
+		white-space: nowrap;
+		overflow: hidden;
+		text-overflow: ellipsis;
+		max-height: 18px;
+		max-width: 250px;
 	}
 
 	h3 {
 		font-size: 13px;
 		text-align: left;
 		float: left;
-		color:rgb(142, 142, 142);
+		color: rgb(142, 142, 142);
+		white-space: nowrap;
+		overflow: hidden;
+		text-overflow: ellipsis;
+	}
+
+	.artist {
+		max-height: 18px;
+		max-width: 230px;
 	}
 
 	.explicit {
@@ -215,7 +308,7 @@
 	}
 
 	.explicitHolder {
-		padding-right: 5px
+		padding-right: 5px;
 	}
 
 	.explicitText {

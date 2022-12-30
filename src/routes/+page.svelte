@@ -31,13 +31,10 @@
 		</div>
 
 		<div class="desc">
-			<div class="empty"></div>
+			<div class="empty" />
 			<div class="titleHolder"><h4>TITLE</h4></div>
 			<div class="albumTitle"><h4>ALBUM</h4></div>
-			<div class="durationHolder">
-				<svg role="img" height="16" width="16" viewBox="0 0 16 16" class="Svg-ytk21e-0 eqtHWV"><path d="M8 1.5a6.5 6.5 0 100 13 6.5 6.5 0 000-13zM0 8a8 8 0 1116 0A8 8 0 010 8z"></path><path d="M8 3.25a.75.75 0 01.75.75v3.25H11a.75.75 0 010 1.5H7.25V4A.75.75 0 018 3.25z"></path></svg>
-			</div>
-			
+			<div aria-label="duration" class="ASYv4mEu1lXEHVa04HqY AgiCqnZUliKs_dafpdyi" aria-expanded="false"><svg role="img" height="16" width="16" viewBox="0 0 16 16" class="Svg-ytk21e-0 eqtHWV"><path d="M8 1.5a6.5 6.5 0 100 13 6.5 6.5 0 000-13zM0 8a8 8 0 1116 0A8 8 0 010 8z"></path><path d="M8 3.25a.75.75 0 01.75.75v3.25H11a.75.75 0 010 1.5H7.25V4A.75.75 0 018 3.25z"></path></svg></div>
 		</div>
 
 		<div class="songContainer">
@@ -182,7 +179,7 @@
 	}
 
 	.albumTitle {
-		width: 35%;
+		width: 37.5%;
 		height: 100%;
 		/* background: yellow; */
 		display: flex;
@@ -191,7 +188,7 @@
 	}
 
 	.durationHolder {
-		width: 11%;
+		width: 8.5%;
 		height: 100%;
 		/* background: orange; */
 		display: flex;
@@ -199,12 +196,14 @@
 		align-items: center;
 	}
 
+	.durationImage {
+		color: red;
+	}
+
 	h4 {
-		color:rgb(142, 142, 142);
+		color: rgb(142, 142, 142);
 		font-size: 15px;
 		font-weight: 700;
-
-
 	}
 
 	.songContainer {
@@ -261,7 +260,7 @@
 		margin-left: 7.5%;
 		padding-right: 4.5%;
 	}
-	
+
 	.albumHolder {
 		width: 30%;
 		height: 100%;
@@ -273,7 +272,7 @@
 	h2 {
 		font-size: 15px;
 		text-align: left;
-		margin-top: 15px;
+		margin-top: 12px;
 		white-space: nowrap;
 		overflow: hidden;
 		text-overflow: ellipsis;
